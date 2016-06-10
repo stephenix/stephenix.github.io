@@ -63,7 +63,7 @@
 				</div>
 			</div>
 			<div class="p2 border-top">
-				<h1 id="hexo-github搭建个人博客"><a href="#hexo-github搭建个人博客" class="headerlink" title="hexo+github搭建个人博客"></a>hexo+github搭建个人博客</h1><h2 id="1-安装hexo"><a href="#1-安装hexo" class="headerlink" title="1. 安装hexo"></a>1. 安装hexo</h2><h3 id="安装过程："><a href="#安装过程：" class="headerlink" title="安装过程："></a>安装过程：</h3><pre><code>$sudo npm install -g hexo
+				<h2 id="1-安装hexo"><a href="#1-安装hexo" class="headerlink" title="1. 安装hexo"></a>1. 安装hexo</h2><h3 id="安装过程："><a href="#安装过程：" class="headerlink" title="安装过程："></a>安装过程：</h3><pre><code>$sudo npm install -g hexo
 $hexo init blog    /* blog指你自己命名的文件夹 */
 $cd blog
 $npm install    /* 安装依赖包 */
@@ -99,7 +99,11 @@ $hexo clean
 $hexo generate
 $hexo deploy
 </code></pre><p>就这么几步，主题就更换成功了。</p>
-<h2 id="5-参考博文"><a href="#5-参考博文" class="headerlink" title="5. 参考博文"></a>5. 参考博文</h2><p>[1] <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">https://hexo.io/docs/deployment.html</a><br>[2] <a href="http://www.jianshu.com/p/13e64c9e2295" target="_blank" rel="external">http://www.jianshu.com/p/13e64c9e2295</a><br>[3] <a href="http://www.cnblogs.com/zhcncn/p/4097881.html" target="_blank" rel="external">http://www.cnblogs.com/zhcncn/p/4097881.html</a><br>[4] <a href="http://blog.csdn.net/wwj_748/article/details/45896373" target="_blank" rel="external">http://blog.csdn.net/wwj_748/article/details/45896373</a><br>[5] <a href="http://jingyan.baidu.com/article/d8072ac47aca0fec95cefd2d.html" target="_blank" rel="external">http://jingyan.baidu.com/article/d8072ac47aca0fec95cefd2d.html</a></p>
+<h2 id="5-创建分类页面"><a href="#5-创建分类页面" class="headerlink" title="5. 创建分类页面"></a>5. 创建分类页面</h2><p>发现没有分类页面，创建：</p>
+<pre><code>$hexo new page categories    /* create a new page */
+$vim index.md        /* edit the tyep is categories */
+编辑themes/next/_config.yml文件，添加categories
+</code></pre><h2 id="6-参考博文"><a href="#6-参考博文" class="headerlink" title="6. 参考博文"></a>6. 参考博文</h2><p>[1] <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">https://hexo.io/docs/deployment.html</a><br>[2] <a href="http://www.jianshu.com/p/13e64c9e2295" target="_blank" rel="external">http://www.jianshu.com/p/13e64c9e2295</a><br>[3] <a href="http://www.cnblogs.com/zhcncn/p/4097881.html" target="_blank" rel="external">http://www.cnblogs.com/zhcncn/p/4097881.html</a><br>[4] <a href="http://blog.csdn.net/wwj_748/article/details/45896373" target="_blank" rel="external">http://blog.csdn.net/wwj_748/article/details/45896373</a><br>[5] <a href="http://jingyan.baidu.com/article/d8072ac47aca0fec95cefd2d.html" target="_blank" rel="external">http://jingyan.baidu.com/article/d8072ac47aca0fec95cefd2d.html</a></p>
 
 			</div>
 			<div class="p2 border-top">
@@ -114,6 +118,11 @@ $hexo deploy
 	</div>
 	
 	<div class="clearfix mt2">
+		
+			<a href="/2016/06/10/vitual/" class="left btn">
+			<svg class="icon" data-icon="chevron-left"></svg>
+			prev: C++的精髓 虚函数
+		</a>
 		
 		
 	</div>
