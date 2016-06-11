@@ -27,7 +27,7 @@
 		<div class="clearfix">
 			<div class="mb4 sm-flex center nowrap">
 	<div class="flex-auto block">
-		<p class="inline h2">Code Paradise</p> | <small class="muted">不因虚度年华而悔恨，不因碌碌无为而羞耻。</small>
+		<p class="inline h2">Code Paradise</p> | <small class="muted">只要凭借自己的意志做出的行动才有意义——笛卡尔。</small>
 	</div>
 </div>
 
@@ -63,7 +63,55 @@
 				</div>
 			</div>
 			<div class="p2 border-top">
-				<h2 id="1-虚函数的作用"><a href="#1-虚函数的作用" class="headerlink" title="1. 虚函数的作用"></a>1. 虚函数的作用</h2><h2 id="2-虚函数的特点"><a href="#2-虚函数的特点" class="headerlink" title="2. 虚函数的特点"></a>2. 虚函数的特点</h2><h3 id="静态联编-动态联编"><a href="#静态联编-动态联编" class="headerlink" title="静态联编 动态联编"></a>静态联编 动态联编</h3><h2 id="3-虚函数的使用"><a href="#3-虚函数的使用" class="headerlink" title="3. 虚函数的使用"></a>3. 虚函数的使用</h2><h2 id="4-虚函数与纯虚函数的区别"><a href="#4-虚函数与纯虚函数的区别" class="headerlink" title="4. 虚函数与纯虚函数的区别"></a>4. 虚函数与纯虚函数的区别</h2>
+				<h2 id="1-虚函数的作用"><a href="#1-虚函数的作用" class="headerlink" title="1. 虚函数的作用"></a>1. 虚函数的作用</h2><p>为了实现多态，引入虚函数。<br>那什么是多态？<br>一言以蔽之：<strong>多态是指同一个方法在派生类和基类中的行为是不同。</strong><br>或者说：<strong>多态是指使用相同的函数名来调用函数不同的实现方法，即“一种接口，多种方法”。</strong>  </p>
+<p>C++实现多态的方法有两种：</p>
+<ul>
+<li>编译时多态：通过函数重载实现（静态联编）</li>
+<li>运行时多态：通过虚函数实现（动态联编）</li>
+</ul>
+<h2 id="2-虚函数的定义和使用"><a href="#2-虚函数的定义和使用" class="headerlink" title="2. 虚函数的定义和使用"></a>2. 虚函数的定义和使用</h2><p>在基类中定义虚函数：</p>
+<pre><code>class Student 
+{
+    char name[50];
+public:
+    virtual void show_name();    /* virtual修饰的函数就是虚函数 */
+}
+</code></pre><p>使用虚函数：</p>
+<p>当函数是通过引用或者指针而不是对象调用的，这时需要注意：</p>
+<ul>
+<li>如果该方法没有使用关键字virtual，程序将根据引用类型或指针类型选择函数；</li>
+<li>如果使用了virtual，程序将根据引用或指针指向的对象的类型来选择函数。</li>
+</ul>
+<h2 id="3-虚函数的工作原理"><a href="#3-虚函数的工作原理" class="headerlink" title="3. 虚函数的工作原理"></a>3. 虚函数的工作原理</h2><p>编译器处理虚函数的方法是：<br>给每个对象添加一个隐藏成员（取该对象占的内存空间不确定是否会看到？），隐藏成员中保存了一个指向函数地址数组的指针。该函数地址数组成为虚函数表（virtual function table, vtbl）。虚函数表中保存着类对象声明的虚函数的地址。</p>
+<pre><code>一个基类对象，该对象包含一个指针，指向保存基类中所有虚函数地址的地址表vtbl1；
+一个派生类对象，该对象包含一个指针，指向保存派生类中所有虚函数地址的地址表vtbl2；
+如果派生类提供了虚函数的新定义，则虚函数地址表中保存新的地址；如果派生类定义了新的虚函数，则新函数的地址也要加入到vtbl2中。
+</code></pre><p>调用虚函数时：<br>程序查看对象中vtbl地址，然后转向相应的函数地址表中，再找到调用的虚函数地址，执行该虚函数。<br><strong>虚函数表中地址的顺序</strong>：</p>
+<ul>
+<li>虚函数按照其声明顺序放于表中</li>
+<li>父类的虚函数在子类的虚函数前面  </li>
+</ul>
+<p><a>最好能写程序验证一下。</a></p>
+<h2 id="4-虚函数的代价"><a href="#4-虚函数的代价" class="headerlink" title="4. 虚函数的代价"></a>4. 虚函数的代价</h2><p>使用虚函数，在内存和执行速度方面有一定的成本：</p>
+<ul>
+<li>每个对象实际占的空间增大，增大量是存储地址的空间；</li>
+<li>对于每一个类，编译器都需要创建一个虚函数表；</li>
+<li>对于每个函数调用，都需要执行一项额外的操作，即表中查找地址。（主要是因为虚函数是动态联编，非虚函数是静态联编，则不要额外的操作）</li>
+</ul>
+<h2 id="5-虚函数相关注意事项"><a href="#5-虚函数相关注意事项" class="headerlink" title="5. 虚函数相关注意事项"></a>5. 虚函数相关注意事项</h2><h3 id="5-1-构造函数"><a href="#5-1-构造函数" class="headerlink" title="5.1 构造函数"></a>5.1 构造函数</h3><p>构造函数不能是虚函数.</p>
+<h3 id="5-2-析构函数"><a href="#5-2-析构函数" class="headerlink" title="5.2 析构函数"></a>5.2 析构函数</h3><p>析构函数应该是虚函数，除非类不用做基类。<br>通常会给基类提供一个虚析构函数，即使它并不需要析构函数。</p>
+<h2 id="6-虚函数与纯虚函数的区别"><a href="#6-虚函数与纯虚函数的区别" class="headerlink" title="6. 虚函数与纯虚函数的区别"></a>6. 虚函数与纯虚函数的区别</h2><ul>
+<li>虚函数可以被直接使用，也可以被子类重载以后以多态的形式调用，而纯虚函数必须在子类中实现该函数才可以使用，因为纯虚函数在基类只有声明而没有定义;</li>
+<li>虚函数和纯虚函数都可以在子类中被重载，以多态的形式被调用;</li>
+<li>定义不同<ul>
+<li>虚函数定义：virtual func() {method body} ;</li>
+<li>纯虚函数定义：virtual func() = 0;</li>
+</ul>
+</li>
+<li>含有纯虚函数的类才能称为抽象类。</li>
+</ul>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p>[1] 《C++ prime plus》第六版<br>[2] 《C++ prime plus》第五版<br>[3] <a href="http://blog.csdn.net/wuchuanpingstone/article/details/6742465" target="_blank" rel="external">http://blog.csdn.net/wuchuanpingstone/article/details/6742465</a><br>[4] <a href="http://www.cnblogs.com/bluestorm/archive/2012/08/29/2662350.html" target="_blank" rel="external">http://www.cnblogs.com/bluestorm/archive/2012/08/29/2662350.html</a> 虚函数和纯虚函数区别</p>
+
 			</div>
 			<div class="p2 border-top">
 				<div class="clearfix">
