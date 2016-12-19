@@ -106,7 +106,7 @@
     motion: true,
     duoshuo: {
       userId: '0',
-      author: 'Author'
+      author: 'Penulis'
     },
     algolia: {
       applicationID: '',
@@ -186,7 +186,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            Startseite
+            Beranda
           </a>
         </li>
       
@@ -196,7 +196,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
-            Archiv
+            Arsip
           </a>
         </li>
       
@@ -229,6 +229,202 @@
           <div id="content" class="content">
             
   <section id="posts" class="posts-expand">
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/12/19/KMP算法/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Xiangchao Zeng">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.gif">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="一直走，一直走……">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="一直走，一直走……" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/12/19/KMP算法/" itemprop="url">
+                  KMP算法
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Diposting di</span>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-12-19T22:46:51+08:00">
+                2016-12-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">Di</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/C/" itemprop="url" rel="index">
+                    <span itemprop="name">C</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>KMP算法是字符串算法中经典的算法之一，每个人理解方式不同，本文记录本人的理解过程，其中有参考《严书》和他人博客，建议先看《严书》。</p>
+<h2 id="1-KMP算法的由来"><a href="#1-KMP算法的由来" class="headerlink" title="1. KMP算法的由来"></a>1. KMP算法的由来</h2><p>KMP算法是解决字符串匹配问题。</p>
+<p>问题：字符串匹配，一个主串，一个模式串，模式串是否在主串中，如果在，求出第一个字符的下标。</p>
+<p><strong>正常解法：</strong> 一个字符一个字符比</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//s是主串，p是模式串，返回模式串在主串中的起始下标，如果不存在，返回-1</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">get_substring</span><span class="params">(<span class="keyword">char</span> *s, <span class="keyword">int</span> slen, <span class="keyword">char</span> *p, <span class="keyword">int</span> plen)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> i = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">int</span> j = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">int</span> index = <span class="number">-1</span>;</span><br><span class="line">	<span class="keyword">for</span> (; i &lt;= slen - plen; i ++) &#123;</span><br><span class="line">		<span class="keyword">int</span> mov = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">while</span> (mov &lt; plen &amp;&amp; s[i + mov] == p[j + mov])</span><br><span class="line">			++ mov;</span><br><span class="line">		<span class="keyword">if</span> (mov == plen)</span><br><span class="line">			index = i;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> index;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>严书的代码：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//返回模式串P在主串S中第pos个字符之后的位置，若不存在，返回-1</span></span><br><span class="line"><span class="comment">//C中是没有string类型的，这里为了简便</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">index_substring</span><span class="params">(<span class="keyword">char</span> *s, <span class="keyword">char</span> *p, <span class="keyword">int</span> pos)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> i = pos;</span><br><span class="line">	<span class="keyword">int</span> j = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">int</span> slen = <span class="built_in">strlen</span>(s);</span><br><span class="line">	<span class="keyword">int</span> plen = <span class="built_in">strlen</span>(p);</span><br><span class="line">	<span class="keyword">while</span> (i &lt; slen &amp;&amp; j &lt; plen) &#123;</span><br><span class="line">		<span class="keyword">if</span> (s[i] == p[j]) &#123;</span><br><span class="line">			++ i;</span><br><span class="line">			++ j;</span><br><span class="line">		&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">			i = i - j + <span class="number">1</span>;</span><br><span class="line">			j = <span class="number">0</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span> (j == plen)</span><br><span class="line">		<span class="keyword">return</span> i - j;</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">		<span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这种方法太低效，时间复杂度接近O(n * m)，所以，是否可以利用已经部分匹配的信息，减少回溯的次数，让模式串尽可能快速移动到合适的位置。</p>
+<p><strong>那么，问题来了，</strong> 当主串的指针i和模式串的指针j不匹配时，模式串的指针j应该移动到哪个位置？</p>
+<p>于是，KMP算法就有了。</p>
+<h2 id="2-KMP算法"><a href="#2-KMP算法" class="headerlink" title="2. KMP算法"></a>2. KMP算法</h2><p>先介绍Next数组的含义。</p>
+<h3 id="2-1-next数组的含义"><a href="#2-1-next数组的含义" class="headerlink" title="2.1 next数组的含义"></a>2.1 next数组的含义</h3><p>next[j] = k，当主串的指针i和模式串的指针j不匹配时，模式串的指针j应该移动到指针k，主串指针i不需要回溯。</p>
+<p>先举个例子，明白next[j] = k等式的含义。</p>
+<p>next[j] = k，k的含义指模式串的前k个字符和其最后的k个字符相同(下标从0开始)。</p>
+<p><img src="C:\Users\zengxc\Desktop\KMP图.png" alt="KMP图"></p>
+<h3 id="2-2-理解next数组的正确"><a href="#2-2-理解next数组的正确" class="headerlink" title="2.2 理解next数组的正确"></a>2.2 理解next数组的正确</h3><p>主串用T[i]表示，模式串用P[j]表示，下标从0开始。</p>
+<p>从严谨角度来看，请参考《严书》的数学归纳法证明。</p>
+<p>本文以理解为主。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">当 T[i] != P[j]时，</span><br><span class="line">  有 T[i-j ~ i<span class="number">-1</span>] == P[<span class="number">0</span> ~ j<span class="number">-1</span>]</span><br><span class="line">  已知 P[<span class="number">0</span> ~ k<span class="number">-1</span>] == P[j-k ~ j<span class="number">-1</span>]</span><br><span class="line">  再把j修改为k，则有 T[i-k ~ i<span class="number">-1</span>] == P[<span class="number">0</span> ~ k<span class="number">-1</span>]， 所以主串的指针i和模式串的指针k比较，</span><br><span class="line">  结果是：主串的指针i不需要回溯，模式串的指针j回溯到指针k，而不是回溯到第一个。</span><br></pre></td></tr></table></figure>
+<h3 id="2-3-如何求出next数组"><a href="#2-3-如何求出next数组" class="headerlink" title="2.3 如何求出next数组"></a>2.3 如何求出next数组</h3><p>求出过程，是数学归纳法，也是递推过程。</p>
+<p><del>当j=0时，即模式串中第一个不匹配时，有next[0] = 0；</del>  我们先不管初始条件，否则容易乱。</p>
+<p>假设当next[j] = k，next数组含义知有，<strong>P[0 ~ k-1] == P[j-k ~ j-1]</strong>。</p>
+<p>那么next[j+1]是？:sweat_smile:</p>
+<p>​    分为两种情况：</p>
+<ol>
+<li>当p[k] == p[j]时，有P[0 ~ k-1~k] == P[j-k ~ j-1~j]，则有next[j+1] = k+1 = next[j] + 1;</li>
+<li>当p[k] != p[j]时，这又是一个字符串匹配问题，整个模式串既是是主串又是模式串，应当将模式串中P[j]和P[next[k]]比较，由已知得，有next[k] = m，当p[j] == p[m]，则有P[j-m+1 ~ j] = p[0 ~ m]，即next[j+1] = m + 1 = next[k] + 1；当p[j] != p[m]时，依次类推，最后next[j+1] = 0（j &gt;= 0）；</li>
+</ol>
+<p><strong>最后，我们来看初始条件。</strong>有next[1] = 0，显然当模式串中第一个字符和主串的字符不匹配时，是应该从下标0开始比较。在求解next数组过程中，有公式next[j+1] = next[j] + 1，所以，next[0] = -1，也就是说，初始条件是，j = 0，k = -1。</p>
+<p>根据求next数组的递推关系，求next数组的递归代码如下：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//递归代码， arr是next数组</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">next</span><span class="params">(<span class="keyword">int</span> arr[], <span class="keyword">int</span> index, <span class="keyword">char</span> *p)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (index == <span class="number">0</span>)</span><br><span class="line">		arr[index] = <span class="number">-1</span>;</span><br><span class="line">	<span class="keyword">else</span> &#123;</span><br><span class="line">		<span class="keyword">int</span> tmp = arr[index - <span class="number">1</span>];</span><br><span class="line">		<span class="keyword">if</span> (p[index <span class="number">-1</span>] == p[tmp])</span><br><span class="line">			arr[index] = tmp + <span class="number">1</span>;</span><br><span class="line">		<span class="keyword">else</span> </span><br><span class="line">			next(arr, index - <span class="number">1</span>, p);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>求next数组的非递归代码如下：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//非递归代码</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">get_next</span><span class="params">(<span class="keyword">int</span> arr[], <span class="keyword">int</span> len, <span class="keyword">char</span> *p)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> j = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">int</span> k = <span class="number">-1</span>;</span><br><span class="line">	next[<span class="number">0</span>] = <span class="number">-1</span>;</span><br><span class="line">	<span class="keyword">while</span> (j &lt; len) &#123;</span><br><span class="line">		<span class="keyword">if</span> (k == <span class="number">-1</span> || p[j] == p[k])</span><br><span class="line">			arr[++ j] = ++ k;</span><br><span class="line">		<span class="keyword">else</span> </span><br><span class="line">			k = next[k];</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="2-4-改进的next数组"><a href="#2-4-改进的next数组" class="headerlink" title="2.4 改进的next数组"></a>2.4 改进的next数组</h3><p>2.3中求next数组存在另外的问题，比如主串s ‘aaabaaaab’和模式串p ‘aaaab’，next数组值如下，</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">j</th>
+<th style="text-align:center">0   1   2   3   4</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">模式</td>
+<td style="text-align:center">a   a   a   a   b</td>
+</tr>
+<tr>
+<td style="text-align:center">next[j]</td>
+<td style="text-align:center">-1   0   1   2   3</td>
+</tr>
+<tr>
+<td style="text-align:center">nextval[j]</td>
+<td style="text-align:center">0   0   0   0   4</td>
+</tr>
+</tbody>
+</table>
+<p>当i = 3，j = 3时，主串和模式串不匹配，根据求出的next数组，仍然会依次比较i = 3，j = 0、1、2，实际上因为p[0] == p[1] == p[2]，是不需要再进行比较的，所以改进的next数组nextval。</p>
+<p>求nextval数组的代码:</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">nextval</span><span class="params">(<span class="keyword">int</span> arr[], <span class="keyword">int</span> len, <span class="keyword">char</span> *p)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> j = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">int</span> k = <span class="number">-1</span>;</span><br><span class="line">	arr[<span class="number">0</span>] = <span class="number">-1</span>;</span><br><span class="line">	<span class="keyword">while</span> (j &lt; len) &#123;</span><br><span class="line">		<span class="keyword">if</span> (k == <span class="number">-1</span> || p[j] == p[k]) &#123;</span><br><span class="line">			<span class="keyword">if</span> (p[j + <span class="number">1</span>] == p[k + <span class="number">1</span>])</span><br><span class="line">				nextval[++ j] = nextval[++ k];</span><br><span class="line">			<span class="keyword">else</span></span><br><span class="line">				nextval[++ j] = ++ k;</span><br><span class="line">		&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">			k = nextval[k];</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>【未完待续】</p>
+<h2 id="3-参考"><a href="#3-参考" class="headerlink" title="3. 参考"></a>3. 参考</h2><p>[1] <a href="http://www.cnblogs.com/tangzhengyue/p/4315393.html" target="_blank" rel="external">http://www.cnblogs.com/tangzhengyue/p/4315393.html</a></p>
+<p>[2] 严书《数据结构》</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
     
       
 
@@ -278,7 +474,7 @@
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
-              <span class="post-meta-item-text">Veröffentlicht am</span>
+              <span class="post-meta-item-text">Diposting di</span>
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-12-05T23:44:24+08:00">
                 2016-12-05
               </time>
@@ -295,7 +491,7 @@
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
-              <span class="post-meta-item-text">in</span>
+              <span class="post-meta-item-text">Di</span>
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/C/" itemprop="url" rel="index">
@@ -512,7 +708,7 @@
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
-              <span class="post-meta-item-text">Veröffentlicht am</span>
+              <span class="post-meta-item-text">Diposting di</span>
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-06-10T19:08:07+08:00">
                 2016-06-10
               </time>
@@ -529,7 +725,7 @@
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
-              <span class="post-meta-item-text">in</span>
+              <span class="post-meta-item-text">Di</span>
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/C/" itemprop="url" rel="index">
@@ -694,7 +890,7 @@ public:
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
-              <span class="post-meta-item-text">Veröffentlicht am</span>
+              <span class="post-meta-item-text">Diposting di</span>
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-06-08T22:15:44+08:00">
                 2016-06-08
               </time>
@@ -844,16 +1040,16 @@ $vim index.md        /* edit the tyep is categories */
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">3</span>
-              <span class="site-state-item-name">Artikel</span>
+              <span class="site-state-item-count">4</span>
+              <span class="site-state-item-name">posting</span>
             </a>
           </div>
 
           
             <div class="site-state-item site-state-categories">
               
-                <span class="site-state-item-count">2</span>
-                <span class="site-state-item-name">Kategorien</span>
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">kategori</span>
               
             </div>
           
@@ -861,8 +1057,8 @@ $vim index.md        /* edit the tyep is categories */
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">2</span>
-                <span class="site-state-item-name">Tags</span>
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">tags</span>
               </a>
             </div>
           
@@ -910,11 +1106,11 @@ $vim index.md        /* edit the tyep is categories */
 
 
 <div class="powered-by">
-  Erstellt mit  <a class="theme-link" href="https://hexo.io">Hexo</a>
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
 </div>
 
 <div class="theme-info">
-  Theme -
+  Tema -
   <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
     NexT.Muse
   </a>
