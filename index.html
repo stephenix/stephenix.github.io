@@ -335,7 +335,7 @@
       
         
           
-            <p>KMP算法是字符串算法中经典的算法之一，每个人理解方式不同，本文记录本人的理解过程，其中有参考《严书》和他人博客，建议先看《严书》。</p>
+            <p>KMP算法是字符串算法中经典的算法之一，本文仅作记录理解之用，其中有参考《严书》和他人博客，建议先看《严书》。</p>
 <h2 id="1-KMP算法的由来"><a href="#1-KMP算法的由来" class="headerlink" title="1. KMP算法的由来"></a>1. KMP算法的由来</h2><p>KMP算法是解决字符串匹配问题。</p>
 <p>问题：字符串匹配，一个主串，一个模式串，模式串是否在主串中，如果在，求出第一个字符的下标。</p>
 <p><strong>正常解法：</strong> 一个字符一个字符比</p>
@@ -349,7 +349,7 @@
 <h3 id="2-1-next数组的含义"><a href="#2-1-next数组的含义" class="headerlink" title="2.1 next数组的含义"></a>2.1 next数组的含义</h3><p>next[j] = k，当主串的指针i和模式串的指针j不匹配时，模式串的指针j应该移动到指针k，主串指针i不需要回溯。</p>
 <p>先举个例子，明白next[j] = k等式的含义。</p>
 <p>next[j] = k，k的含义指模式串的前k个字符和其最后的k个字符相同(下标从0开始)。</p>
-<p><img src="C:\Users\zengxc\Desktop\KMP图.png" alt="KMP图"></p>
+<p><img src="/Users/stephen/Documents/blog/source/_posts/KMP图.png" alt="KMP图"></p>
 <h3 id="2-2-理解next数组的正确"><a href="#2-2-理解next数组的正确" class="headerlink" title="2.2 理解next数组的正确"></a>2.2 理解next数组的正确</h3><p>主串用T[i]表示，模式串用P[j]表示，下标从0开始。</p>
 <p>从严谨角度来看，请参考《严书》的数学归纳法证明。</p>
 <p>本文以理解为主。</p>
