@@ -186,7 +186,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            Startseite
+            Home
           </a>
         </li>
       
@@ -196,7 +196,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
-            Archiv
+            Archives
           </a>
         </li>
       
@@ -229,6 +229,150 @@
           <div id="content" class="content">
             
   <section id="posts" class="posts-expand">
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/12/20/oracle/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Xiangchao Zeng">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.gif">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="一直走，一直走……">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="一直走，一直走……" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/12/20/oracle/" itemprop="url">
+                  win10中Oracle数据库显示中文乱码
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-12-20T20:45:23+08:00">
+                2016-12-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/C/" itemprop="url" rel="index">
+                    <span itemprop="name">C#</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="win10安装oracle数据库显示中文乱码"><a href="#win10安装oracle数据库显示中文乱码" class="headerlink" title="win10安装oracle数据库显示中文乱码"></a>win10安装oracle数据库显示中文乱码</h1><p>win10中oracle数据库显示中文乱码，都是？？。</p>
+<p>小注：没有想到有生之年也会有机会用oracle数据库😝。</p>
+<p>中文显示乱码，十有八九是编码有问题。</p>
+<p>解决方法：</p>
+<ol>
+<li>开始-运行-输入regedit-回车进入注册表，依次单击HKEY_LOCAL_MACHINE—&gt;SOFTWARE<br>—&gt; ORACLE—&gt;KEY_OraDb11g_home1（不同版本的Oracle显示的都不太一样，但都会包含home这个单词），找到“NLS_LANG”，查看数值数据是否为：“SIMPLIFIED CHINESE_CHINA.ZHS16GBK”，如果不是就将它设置为“SIMPLIFIED CHINESE_CHINA.ZHS16GBK”。</li>
+<li>设置完注册表后，接下来设置我们的环境变量，计算机（右键）—&gt;属性—&gt;高级系统设置—&gt;高级—&gt;环境变量—&gt;新建，个人建议新建用户变量，变量名输入：“NLS_LANG”，变量值输入：“SIMPLIFIED CHINESE_CHINA.ZHS16GBK”，再点击确定即可。</li>
+<li>重新启动PL/SQL后，显示正常。</li>
+</ol>
+<p>有时候重装系统（比如我）后发现，注册表中没有oracle文件夹，看看在Wow6432Node文件夹是否有，如果还没有，只能自己手动创建1和2的过程，问题同样解决。</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
     
       
 
@@ -278,7 +422,7 @@
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
-              <span class="post-meta-item-text">Veröffentlicht am</span>
+              <span class="post-meta-item-text">Posted on</span>
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-12-19T22:46:51+08:00">
                 2016-12-19
               </time>
@@ -295,7 +439,7 @@
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
-              <span class="post-meta-item-text">in</span>
+              <span class="post-meta-item-text">In</span>
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/C/" itemprop="url" rel="index">
@@ -474,7 +618,7 @@
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
-              <span class="post-meta-item-text">Veröffentlicht am</span>
+              <span class="post-meta-item-text">Posted on</span>
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-10-05T23:44:24+08:00">
                 2016-10-05
               </time>
@@ -491,7 +635,7 @@
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
-              <span class="post-meta-item-text">in</span>
+              <span class="post-meta-item-text">In</span>
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/C/" itemprop="url" rel="index">
@@ -708,7 +852,7 @@
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
-              <span class="post-meta-item-text">Veröffentlicht am</span>
+              <span class="post-meta-item-text">Posted on</span>
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-06-10T19:08:07+08:00">
                 2016-06-10
               </time>
@@ -725,7 +869,7 @@
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
-              <span class="post-meta-item-text">in</span>
+              <span class="post-meta-item-text">In</span>
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/C/" itemprop="url" rel="index">
@@ -890,7 +1034,7 @@ public:
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
-              <span class="post-meta-item-text">Veröffentlicht am</span>
+              <span class="post-meta-item-text">Posted on</span>
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-06-08T22:15:44+08:00">
                 2016-06-08
               </time>
@@ -1040,8 +1184,8 @@ $vim index.md        /* edit the tyep is categories */
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">4</span>
-              <span class="site-state-item-name">Artikel</span>
+              <span class="site-state-item-count">5</span>
+              <span class="site-state-item-name">posts</span>
             </a>
           </div>
 
@@ -1049,7 +1193,7 @@ $vim index.md        /* edit the tyep is categories */
             <div class="site-state-item site-state-categories">
               
                 <span class="site-state-item-count">3</span>
-                <span class="site-state-item-name">Kategorien</span>
+                <span class="site-state-item-name">categories</span>
               
             </div>
           
@@ -1057,8 +1201,8 @@ $vim index.md        /* edit the tyep is categories */
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">3</span>
-                <span class="site-state-item-name">Tags</span>
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">tags</span>
               </a>
             </div>
           
@@ -1106,7 +1250,7 @@ $vim index.md        /* edit the tyep is categories */
 
 
 <div class="powered-by">
-  Erstellt mit  <a class="theme-link" href="https://hexo.io">Hexo</a>
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
 </div>
 
 <div class="theme-info">
